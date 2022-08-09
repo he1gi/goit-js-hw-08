@@ -6,8 +6,6 @@ const messageEl = document.querySelector('textarea');
 const inputEl = document.querySelector('input');
 let formData;
 
-updateOutput();
-
 formEl.addEventListener('submit', onFormSubmit);
 formEl.addEventListener('input', throttle(onFormInputValue, 500));
 
@@ -16,6 +14,8 @@ function onFormInputValue(event) {
   formData[event.target.name] = event.target.value;
   localStorage.setItem(STORAGE_KEY, JSON.stringify(formData));
 }
+
+updateOutput();
 
 function onFormSubmit(event) {
   event.preventDefault();
@@ -27,6 +27,7 @@ function onFormSubmit(event) {
   }
 
   event.target.reset();
+
   localStorage.removeItem(STORAGE_KEY);
 }
 
@@ -35,3 +36,9 @@ function updateOutput() {
     JSON.parse(localStorage.getItem(STORAGE_KEY))['message'] || '';
   inputEl.value = JSON.parse(localStorage.getItem(STORAGE_KEY))['email'] || '';
 }
+// if (feedbackFormState.email) {
+//   emailInput.value = feedbackFormState.email;
+// }
+// if (feedbackFormState.message) {
+//   messageTextarea.value = feedbackFormState.message;
+// }
