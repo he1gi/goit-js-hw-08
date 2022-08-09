@@ -2,7 +2,8 @@ import throttle from 'lodash.throttle';
 
 const formEl = document.querySelector('.feedback-form');
 const STORAGE_KEY = 'feedback-form-state';
-const areaEl = document.querySelector('textarea');
+const messageEl = document.querySelector('textarea');
+const inputEl = document.querySelector('input');
 let formData;
 
 updateOutput();
@@ -11,18 +12,17 @@ formEl.addEventListener('submit', onFormSubmit);
 formEl.addEventListener('input', throttle(onFormInputValue, 500));
 
 function onFormInputValue(event) {
-  formData = localStorage.getItem(STORAGE_KEY) || {};
-  console.log(formData);
+  formData = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
   formData[event.target.name] = event.target.value;
-  localStorage.setItem(STORAGE_KEY, formData);
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(formData));
 }
 
 function onFormSubmit(event) {
   event.preventDefault();
-  if (!event.target.name) {
+  if (!event.target.email.value) {
     return;
   }
-  if (!event.target.message) {
+  if (!event.target.message.value) {
     return;
   }
 
@@ -31,29 +31,7 @@ function onFormSubmit(event) {
 }
 
 function updateOutput() {
-  areaEl.textContent = localStorage.getItem(STORAGE_KEY) || '';
-  console.log(JSON.stringify(localStorage.getItem(STORAGE_KEY)));
+  messageEl.textContent =
+    JSON.parse(localStorage.getItem(STORAGE_KEY))['message'] || '';
+  inputEl.value = JSON.parse(localStorage.getItem(STORAGE_KEY))['email'] || '';
 }
-// refs.form.addEventListener('submit', onFormSubmit);
-// refs.textarea.addEventListener('input', a);
-// refs.input.addEventListener('input', a);
-
-// function onTextInput(event) {
-//   const message = event.target.value;
-//   localStorage.setItem(STORAGE_KEY, message);
-// }
-
-// function onFormSubmit(event) {
-//   event.preventDefault();
-//   event.target.reset();
-// }
-
-// function a() {
-//   const savedMassage = localStorage.getItem(STORAGE_KEY);
-//   if (savedMassage) {
-//     refs.input.value = savedMassage;
-//   }
-//   if (savedMassage) {
-//     refs.textarea.value = savedMassage;
-//   }
-// }
