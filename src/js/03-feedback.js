@@ -31,7 +31,7 @@ function onFormSubmit(event) {
 }
 
 function updateOutput() {
-  messageEl.textContent =
+  messageEl.value =
     JSON.parse(localStorage.getItem(STORAGE_KEY))['message'] || '';
   inputEl.value = JSON.parse(localStorage.getItem(STORAGE_KEY))['email'] || '';
 }
