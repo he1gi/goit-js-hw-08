@@ -6,7 +6,6 @@ const inputEl = document.querySelector('input');
 
 const STORAGE_KEY = 'feedback-form-state';
 let formData = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
-
 if (formData.email) {
   inputEl.value = formData.email;
 }
@@ -28,8 +27,9 @@ function onFormSubmit(event) {
   if (!event.target.message.value) {
     return;
   }
-  formEl.reset();
   localStorage.removeItem(STORAGE_KEY);
+  formEl.reset();
+  formData = {};
 }
 
 formEl.addEventListener('submit', onFormSubmit);
