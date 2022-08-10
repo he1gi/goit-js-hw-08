@@ -21,14 +21,14 @@ function onFormInputValue(event) {
 
 function onFormSubmit(event) {
   event.preventDefault();
+  console.log(formData);
   if (!event.target.email.value) {
     return;
   }
   if (!event.target.message.value) {
     return;
   }
-  console.log(formData);
-  event.target.reset();
+  formEl.reset();
   localStorage.removeItem(STORAGE_KEY);
 }
 
