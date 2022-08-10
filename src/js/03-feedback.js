@@ -35,9 +35,14 @@ function updateOutput() {
     JSON.parse(localStorage.getItem(STORAGE_KEY))['message'] || '';
   inputEl.value = JSON.parse(localStorage.getItem(STORAGE_KEY))['email'] || '';
 }
-// if (feedbackFormState.email) {
-//   emailInput.value = feedbackFormState.email;
-// }
-// if (feedbackFormState.message) {
-//   messageTextarea.value = feedbackFormState.message;
+
+// function updateOutput() {
+//   if (messageEl.value) {
+//     messageEl.value =
+//       JSON.parse(localStorage.getItem(STORAGE_KEY))['message'] || '';
+//   }
+//   if (inputEl.value) {
+//     inputEl.value =
+//       JSON.parse(localStorage.getItem(STORAGE_KEY))['email'] || '';
+//   }
 // }
